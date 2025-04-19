@@ -1,190 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NovaBot - Your Ultimate Discord Companion</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaBot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background: #0d0d1a;
-      color: #fff;
-      scroll-behavior: smooth;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, #1a1a2e 0%, #0f0f1c 100%);
-      z-index: -2;
-    }
-
-    .background-animation {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
-
-    .circle {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0d0d0d; color: white; overflow-x: hidden; }
+    header { padding: 100px 20px; text-align: center; background: linear-gradient(145deg, #1e1e2f, #252537); position: relative; }
+    .glow-bg {
       position: absolute;
-      border-radius: 50%;
-      background: rgba(88, 101, 242, 0.15);
-      animation: float 20s infinite ease-in-out;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 20%, rgba(90,40,180,0.2), transparent), radial-gradient(circle at 80% 70%, rgba(255,100,100,0.15), transparent);
+      animation: moveGlow 20s ease-in-out infinite alternate;
+      z-index: 0;
     }
-
-    .circle:nth-child(1) {
-      width: 300px;
-      height: 300px;
-      top: 20%;
-      left: 10%;
+    @keyframes moveGlow {
+      0% { background-position: 0% 0%, 100% 100%; }
+      100% { background-position: 100% 100%, 0% 0%; }
     }
-
-    .circle:nth-child(2) {
-      width: 500px;
-      height: 500px;
-      bottom: 10%;
-      right: 5%;
-      animation-delay: 5s;
-    }
-
-    .circle:nth-child(3) {
-      width: 200px;
-      height: 200px;
-      top: 70%;
-      left: 40%;
-      animation-delay: 2s;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-30px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 60px 20px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      color: #00f7ff;
-      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00cfff;
-    }
-
-    p {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin-bottom: 2rem;
-      color: #ccc;
-    }
-
-    .stats {
-      font-size: 1.7rem;
-      margin-bottom: 2rem;
-      font-weight: bold;
-      color: #00ffcc;
-      text-shadow: 0 0 5px #00ffcc;
-    }
-
-    .add-btn {
-      padding: 1.2rem 2.5rem;
-      background: linear-gradient(145deg, #5865F2, #4046c4);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.3rem;
-      text-decoration: none;
-      box-shadow: 0 0 20px #5865F2, 0 0 40px rgba(88, 101, 242, 0.5);
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-    }
-
-    .add-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #5865F2, 0 0 60px rgba(88, 101, 242, 0.7);
-    }
-
-    .footer {
-      padding: 20px;
-      font-size: 1rem;
-      color: #888;
-      text-shadow: 0 0 3px #333;
-    }
-
-    .features {
-      background: #12122b;
-      padding: 60px 20px;
-    }
-
-    .features h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #00e0ff;
-    }
-
-    .feature-list {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .feature-item {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      margin-bottom: 15px;
-      border-left: 4px solid #00e0ff;
-      border-radius: 8px;
-    }
+    .container { position: relative; z-index: 1; }
+    h1 { font-size: 4em; margin-bottom: 0.2em; }
+    p { font-size: 1.2em; color: #ccc; margin-bottom: 30px; }
+    .btn { padding: 15px 35px; background-color: #5865F2; color: white; font-size: 1.1em; border: none; border-radius: 10px; text-decoration: none; transition: background 0.3s; }
+    .btn:hover { background-color: #4752c4; }
+    section { padding: 80px 20px; max-width: 1200px; margin: auto; }
+    .features, .terms { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px; }
+    .card { background: rgba(255, 255, 255, 0.03); padding: 25px; border-radius: 15px; transition: 0.3s ease; box-shadow: 0 0 20px rgba(0,0,0,0.3); }
+    .card:hover { background: rgba(255, 255, 255, 0.06); transform: translateY(-5px); }
+    footer { text-align: center; font-size: 0.9em; padding: 40px 20px; color: #888; background: #111; margin-top: 80px; }
+    h2 { text-align: center; font-size: 2.8em; margin-bottom: 0.5em; }
+    .scroll-down { text-align: center; padding: 20px; color: #aaa; }
   </style>
 </head>
 <body>
-  <div class="background-animation">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
+  <header>
+    <div class="glow-bg"></div>
+    <div class="container">
+      <h1>NovaBot</h1>
+      <p>Trusted by over 2 million+ users worldwide 🚀</p>
+      <a href="https://discord.com/oauth2/authorize?client_id=1351124558236749825&permissions=8&scope=bot" class="btn">Add to Discord</a>
+    </div>
+  </header>
 
-  <section class="section">
-    <h1>NovaBot</h1>
-    <p>Your #1 trusted Discord bot for moderation, music, games, AI chat, and more!</p>
-    <div class="stats">2,000,000+ servers and counting 🚀</div>
-    <a href="https://discord.com/oauth2/authorize?client_id=1351124558236749825&permissions=8&scope=bot" class="add-btn">➕ Add to Discord</a>
-  </section>
-
-  <section class="section features">
-    <h2>Why Choose NovaBot?</h2>
-    <div class="feature-list">
-      <div class="feature-item"><strong>🎵 Music:</strong> High-quality, lag-free music streaming with support for Spotify, YouTube, and SoundCloud.</div>
-      <div class="feature-item"><strong>🛡️ Moderation:</strong> Advanced auto-mod tools, anti-spam, kick, ban, and more to keep your server clean.</div>
-      <div class="feature-item"><strong>🤖 AI Chat:</strong> Built-in AI chatbot that can talk, joke, and help users 24/7.</div>
-      <div class="feature-item"><strong>🎮 Games:</strong> Fun mini-games and trivia to keep your community engaged.</div>
-      <div class="feature-item"><strong>⚙️ Custom Commands:</strong> Fully customizable commands and responses to suit your server's needs.</div>
+  <section>
+    <h2>Why NovaBot?</h2>
+    <div class="features">
+      <div class="card">
+        <h3>Creative Welcome Messages</h3>
+        <p>Create a warm and personalized greeting to new members with customizable designs and animations.</p>
+      </div>
+      <div class="card">
+        <h3>Leveling System</h3>
+        <p>Gamify your server with XP, levels, and customizable rank cards.</p>
+      </div>
+      <div class="card">
+        <h3>Interactive Polls</h3>
+        <p>Use buttons to engage your server with quick polls and feedback questions.</p>
+      </div>
+      <div class="card">
+        <h3>Giveaways & Events</h3>
+        <p>Schedule giveaways with ease and reward your most active members.</p>
+      </div>
     </div>
   </section>
 
-  <div class="footer">Loved by millions. Trusted by the biggest communities on Discord.</div>
+  <section>
+    <h2>Terms of Service</h2>
+    <div class="terms">
+      <div class="card">
+        <h3>Acceptance of Terms</h3>
+        <p>By using NovaBot, you agree to these terms and to comply with all applicable laws and regulations.</p>
+      </div>
+      <div class="card">
+        <h3>Prohibited Uses</h3>
+        <p>NovaBot may not be used for spamming, harassment, or other forms of abuse. We reserve the right to ban misuse.</p>
+      </div>
+      <div class="card">
+        <h3>Privacy Policy</h3>
+        <p>We do not log personal conversations. Only metadata such as server ID and command usage may be temporarily stored for analytics.</p>
+      </div>
+      <div class="card">
+        <h3>Changes to Service</h3>
+        <p>We reserve the right to change or discontinue any service features at any time without notice.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 NovaBot. All rights reserved. | This website is a fictional representation.
+  </footer>
 </body>
 </html>
