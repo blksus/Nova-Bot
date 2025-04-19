@@ -6,10 +6,14 @@
   <title>NovaBot - Your Ultimate Discord Companion</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #292940);
+      background: radial-gradient(circle at top left, #1a1a2e, #0f0f1c);
       color: #fff;
       display: flex;
       flex-direction: column;
@@ -18,51 +22,91 @@
       height: 100vh;
       text-align: center;
       padding: 20px;
+      overflow: hidden;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: #00f7ff;
+      text-shadow: 0 0 10px #00f7ff, 0 0 20px #00cfff;
     }
 
     p {
-      font-size: 1.2rem;
-      max-width: 600px;
+      font-size: 1.3rem;
+      max-width: 700px;
       margin-bottom: 2rem;
+      color: #ddd;
     }
 
     .stats {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       margin-bottom: 2rem;
       font-weight: bold;
       color: #00ffcc;
+      text-shadow: 0 0 5px #00ffcc;
     }
 
     .add-btn {
-      padding: 1rem 2rem;
-      background-color: #5865F2;
+      padding: 1.2rem 2.5rem;
+      background: linear-gradient(145deg, #5865F2, #4046c4);
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 1.2rem;
+      border-radius: 12px;
+      font-size: 1.3rem;
       text-decoration: none;
-      box-shadow: 0 0 20px rgba(88,101,242,0.5);
-      transition: background-color 0.3s ease;
+      box-shadow: 0 0 20px #5865F2, 0 0 40px rgba(88, 101, 242, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
 
     .add-btn:hover {
-      background-color: #4752c4;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #5865F2, 0 0 60px rgba(88, 101, 242, 0.7);
     }
 
     .footer {
       position: absolute;
-      bottom: 10px;
-      font-size: 0.9rem;
-      color: #aaa;
+      bottom: 15px;
+      font-size: 1rem;
+      color: #888;
+      text-shadow: 0 0 3px #333;
+    }
+
+    .glow-ring {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(88,101,242,0.5), transparent 70%);
+      animation: pulse 4s infinite ease-in-out;
+      z-index: 0;
+    }
+
+    .glow-ring.one {
+      top: 10%;
+      left: 15%;
+    }
+
+    .glow-ring.two {
+      bottom: 10%;
+      right: 15%;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="glow-ring one"></div>
+  <div class="glow-ring two"></div>
   <h1>NovaBot</h1>
   <p>Your #1 trusted Discord bot for moderation, music, games, AI chat, and more!</p>
   <div class="stats">2,000,000+ servers and counting 🚀</div>
