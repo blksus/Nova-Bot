@@ -10,19 +10,82 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
       font-family: 'Roboto', sans-serif;
-      background: radial-gradient(circle at top left, #1a1a2e, #0f0f1c);
+      background: #0d0d1a;
       color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #1a1a2e 0%, #0f0f1c 100%);
+      z-index: -2;
+    }
+
+    .background-animation {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(88, 101, 242, 0.15);
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .circle:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: 20%;
+      left: 10%;
+    }
+
+    .circle:nth-child(2) {
+      width: 500px;
+      height: 500px;
+      bottom: 10%;
+      right: 5%;
+      animation-delay: 5s;
+    }
+
+    .circle:nth-child(3) {
+      width: 200px;
+      height: 200px;
+      top: 70%;
+      left: 40%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-30px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .section {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 60px 20px;
       text-align: center;
-      padding: 20px;
-      overflow: hidden;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -36,7 +99,7 @@
       font-size: 1.3rem;
       max-width: 700px;
       margin-bottom: 2rem;
-      color: #ddd;
+      color: #ccc;
     }
 
     .stats {
@@ -65,52 +128,63 @@
     }
 
     .footer {
-      position: absolute;
-      bottom: 15px;
+      padding: 20px;
       font-size: 1rem;
       color: #888;
       text-shadow: 0 0 3px #333;
     }
 
-    .glow-ring {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(88,101,242,0.5), transparent 70%);
-      animation: pulse 4s infinite ease-in-out;
-      z-index: 0;
+    .features {
+      background: #12122b;
+      padding: 60px 20px;
     }
 
-    .glow-ring.one {
-      top: 10%;
-      left: 15%;
+    .features h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #00e0ff;
     }
 
-    .glow-ring.two {
-      bottom: 10%;
-      right: 15%;
+    .feature-list {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
     }
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.5;
-      }
-      50% {
-        transform: scale(1.2);
-        opacity: 1;
-      }
+    .feature-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      margin-bottom: 15px;
+      border-left: 4px solid #00e0ff;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="glow-ring one"></div>
-  <div class="glow-ring two"></div>
-  <h1>NovaBot</h1>
-  <p>Your #1 trusted Discord bot for moderation, music, games, AI chat, and more!</p>
-  <div class="stats">2,000,000+ servers and counting 🚀</div>
-  <a href="https://discord.com/oauth2/authorize?client_id=1351124558236749825&permissions=8&scope=bot" class="add-btn">➕ Add to Discord</a>
+  <div class="background-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <section class="section">
+    <h1>NovaBot</h1>
+    <p>Your #1 trusted Discord bot for moderation, music, games, AI chat, and more!</p>
+    <div class="stats">2,000,000+ servers and counting 🚀</div>
+    <a href="https://discord.com/oauth2/authorize?client_id=1351124558236749825&permissions=8&scope=bot" class="add-btn">➕ Add to Discord</a>
+  </section>
+
+  <section class="section features">
+    <h2>Why Choose NovaBot?</h2>
+    <div class="feature-list">
+      <div class="feature-item"><strong>🎵 Music:</strong> High-quality, lag-free music streaming with support for Spotify, YouTube, and SoundCloud.</div>
+      <div class="feature-item"><strong>🛡️ Moderation:</strong> Advanced auto-mod tools, anti-spam, kick, ban, and more to keep your server clean.</div>
+      <div class="feature-item"><strong>🤖 AI Chat:</strong> Built-in AI chatbot that can talk, joke, and help users 24/7.</div>
+      <div class="feature-item"><strong>🎮 Games:</strong> Fun mini-games and trivia to keep your community engaged.</div>
+      <div class="feature-item"><strong>⚙️ Custom Commands:</strong> Fully customizable commands and responses to suit your server's needs.</div>
+    </div>
+  </section>
+
   <div class="footer">Loved by millions. Trusted by the biggest communities on Discord.</div>
 </body>
 </html>
